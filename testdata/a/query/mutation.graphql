@@ -1,0 +1,80 @@
+mutation Normal($input: MutationInput!) {
+    mutation(input: $input) {
+        typeField {
+            field
+            deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+        }
+        deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+            field
+            deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+        }
+    }
+}
+
+mutation Fragment($input: MutationInput!) {
+    mutation(input: $input) {
+        typeField {
+            ...TypeFragment
+        }
+        deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+            ...DeprecatedFragment
+        }
+    }
+}
+
+mutation CreateA4($input: MutationInput!) {
+    mutation(input: $input) {
+        typeField {
+            field
+            deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+            ...TypeFragment
+        }
+        deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+            field
+            deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+            ...DeprecatedFragment
+        }
+    }
+}
+
+mutation CreateA5($input: MutationInput!) {
+    mutation(input: $input) {
+        typeField {
+            ... on Type {
+                field
+                deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+                ...TypeFragment
+            }
+        }
+        deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+            ... on DeprecatedType {
+                field
+                deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+                ...DeprecatedFragment
+            }
+        }
+    }
+}
+
+mutation CreateA6($input: MutationInput!) {
+    mutation(input: $input) {
+        typeField {
+            ... on Type {
+                ... on Type {
+                    field
+                    deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+                    ...TypeFragment
+                }
+            }
+        }
+        deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+            ... on DeprecatedType {
+                ... on DeprecatedType {
+                    field
+                    deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+                    ...DeprecatedFragment
+                }
+            }
+        }
+    }
+}

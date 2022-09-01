@@ -1,0 +1,26 @@
+type Mutation {
+    mutation(input: MutationInput!): MutationPayload!
+    deprecatedMutation(input: DeprecatedMutationInput!): DeprecatedMutationPayload! @deprecated(reason: "use mutation instead")
+}
+
+input MutationInput {
+    name: String!
+}
+
+type MutationPayload {
+    field: String!
+    deprecatedField: String! @deprecated(reason: "use field instead")
+    typeField: Type!
+    deprecatedTypeField: DeprecatedType! @deprecated(reason: "use typeField instead")
+}
+
+input DeprecatedMutationInput {
+    name: String!
+}
+
+type DeprecatedMutationPayload {
+    field: String!
+    deprecatedField: String! @deprecated(reason: "use field instead")
+    typeField: Type!
+    deprecatedTypeField: DeprecatedType! @deprecated(reason: "use typeField instead")
+}

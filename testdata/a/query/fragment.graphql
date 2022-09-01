@@ -1,0 +1,23 @@
+fragment QueryFragment on Query {
+	field
+	deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+	typeField {
+		field
+		deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+	}
+	deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+		field
+		deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+	}
+}
+
+fragment TypeFragment on Type {
+	field
+	deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+}
+
+
+fragment DeprecatedFragment on DeprecatedType {
+	field
+	deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+}

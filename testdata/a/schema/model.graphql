@@ -1,0 +1,10 @@
+type Type {
+	field: String!
+	deprecatedField: String! @deprecated(reason: "use field instead")
+}
+
+type DeprecatedType {
+	field: String!
+	deprecatedField: String! @deprecated(reason: "use field instead")
+}
+

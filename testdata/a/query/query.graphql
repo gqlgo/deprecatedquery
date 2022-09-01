@@ -1,0 +1,6 @@
+query A1 {
+	field
+	deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+	deprecatedFieldNoReason # want "deprecatedFieldNoReason is deprecated"
+	excludeDeprecatedField
+}

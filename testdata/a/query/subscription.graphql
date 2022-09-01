@@ -1,0 +1,63 @@
+subscription A1 {
+    field
+    deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+    typeField {
+        field
+        deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+    }
+    deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+        field
+        deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+    }
+}
+
+subscription A2 {
+    ...QueryFragment
+}
+subscription A3 {
+    typeField {
+        ...TypeFragment
+    }
+}
+
+subscription A4 {
+    deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+        ...DeprecatedFragment
+    }
+}
+
+subscription A5 {
+    deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+        field
+        deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+        ...DeprecatedFragment
+    }
+}
+
+subscription A6 {
+    deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+        ... on DeprecatedType {
+            field
+            deprecatedField # want "deprecatedField is deprecated reason: use field instead"
+            ...DeprecatedFragment
+        }
+    }
+}
+
+subscription A7 {
+    deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+        ... on DeprecatedType {
+            ...DeprecatedFragment
+        }
+    }
+}
+
+subscription A8 {
+    deprecatedTypeField { # want "deprecatedTypeField is deprecated reason: use typeField instead"
+        ... on DeprecatedType {
+            ... on DeprecatedType { # OK
+                ...DeprecatedFragment
+            }
+        }
+    }
+}

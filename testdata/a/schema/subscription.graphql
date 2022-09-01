@@ -1,0 +1,6 @@
+type Subscription {
+    field: String!
+    deprecatedField: String! @deprecated(reason: "use field instead")
+    typeField: Type!
+    deprecatedTypeField: DeprecatedType! @deprecated(reason: "use typeField instead")
+}
