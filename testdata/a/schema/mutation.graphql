@@ -5,6 +5,7 @@ type Mutation {
 
 input MutationInput {
     name: String!
+    value:Enum!
 }
 
 type MutationPayload {

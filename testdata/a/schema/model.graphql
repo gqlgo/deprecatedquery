@@ -8,3 +8,8 @@ type DeprecatedType {
 	deprecatedField: String! @deprecated(reason: "use field instead")
 }
 
+enum Enum {
+	VALUE
+	DEPRECATED_VALUE @deprecated(reason: "use VALUE instead")
+}
+

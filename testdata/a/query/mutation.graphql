@@ -78,3 +78,15 @@ mutation CreateA6($input: MutationInput!) {
         }
     }
 }
+
+mutation CreateA7 {
+    mutation(input: {name: "name", value: VALUE}) {
+        field
+    }
+}
+
+mutation CreateA8 {
+    mutation(input: {name: "name", value: DEPRECATED_VALUE}) { # enum not supported "DEPRECATED_VALUE is deprecated reason: use VALUE instead"
+        field
+    }
+}
