@@ -59,6 +59,14 @@ $ deprecatedquery -schema="server/graphql/schema/**/*.graphql" -query="client/**
 
 The default value of `schema` is "schema/*/**.graphql" and `query` is `query/*/**.graphql`.
 
+`schema` flag accepts URL for a endpoint of GraphQL server.
+`deprecatedquery` will get schemas by an introspection query via the endpoint.
+
+```sh
+$ deprecatedquery -schema="https://example.com" -query="client/**/*.graphql"
+```
+
+
 ## Author
 
 [![Appify Technologies, Inc.](appify-logo.png)](http://github.com/appify-technologies)
